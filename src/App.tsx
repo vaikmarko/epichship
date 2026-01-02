@@ -21,7 +21,7 @@ const projects: Project[] = [
     url: "https://www.sentimentalapp.com",
     status: "active",
     icon: <Activity className="w-6 h-6" />,
-    logo: "/projects/sentimental/logo.png",
+    logo: "projects/sentimental/logo.png",
   },
   {
     title: "Päriselt",
@@ -29,7 +29,7 @@ const projects: Project[] = [
     url: "https://www.päriselt.ee",
     status: "active",
     icon: <Users className="w-6 h-6" />,
-    image: "/projects/pariselt/bg.jpg",
+    image: "projects/pariselt/bg.jpg",
   },
   {
     title: "Air Seal",
@@ -37,7 +37,7 @@ const projects: Project[] = [
     url: "https://www.air-seal.eu",
     status: "active",
     icon: <Building className="w-6 h-6" />,
-    logo: "/projects/airseal/logo.png",
+    logo: "projects/airseal/logo.png",
   },
   {
     title: "My Confessions",
@@ -45,7 +45,7 @@ const projects: Project[] = [
     url: "https://www.myconfessions.org",
     status: "archived",
     icon: <Code className="w-6 h-6" />,
-    image: "/projects/myconfessions/bg.png",
+    image: "projects/myconfessions/bg.png",
   },
   {
     title: "Echo",
@@ -53,7 +53,7 @@ const projects: Project[] = [
     url: "https://findyourecho.app",
     status: "building",
     icon: <Server className="w-6 h-6" />,
-    image: "/projects/echo/screen.png",
+    image: "projects/echo/screen.png",
   },
   {
     title: "Sovereign Systems",
@@ -61,7 +61,7 @@ const projects: Project[] = [
     url: "https://svgnsystems.com",
     status: "active",
     icon: <ShieldCheck className="w-6 h-6" />,
-    image: "/projects/sovereign/bg.png",
+    image: "projects/sovereign/bg.png",
   },
   {
     title: "PEP Checker",
@@ -76,8 +76,8 @@ const projects: Project[] = [
     url: "https://www.sukoda.ee",
     status: "active",
     icon: <Anchor className="w-6 h-6" />,
-    image: "/projects/sukoda/bg.jpg",
-    logo: "/projects/sukoda/logo.svg",
+    image: "projects/sukoda/bg.jpg",
+    logo: "projects/sukoda/logo.svg",
   },
   {
     title: "Serenity Platform",
@@ -97,7 +97,7 @@ const projects: Project[] = [
     description: "Digital community platform for Rotermann Quarter.",
     status: "building",
     icon: <Smartphone className="w-6 h-6" />,
-    image: "/projects/thelist/bg.jpg",
+    image: "projects/thelist/bg.jpg",
   },
   {
     title: "Vabaks",
