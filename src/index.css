@@ -1,21 +1,19 @@
-@import "tailwindcss";
-
-@theme {
-  --color-epic-black: #0a0a0a;
-  --color-epic-gray: #1a1a1a;
-  --color-epic-white: #f5f5f5;
-  --color-epic-accent: #3b82f6;
-
-  --font-sans: Inter, system-ui, sans-serif;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  background-color: var(--color-epic-black);
-  color: var(--color-epic-white);
+  background-color: #0a0a0a;
+  color: #f5f5f5;
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', sans-serif;
 }

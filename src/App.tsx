@@ -133,16 +133,20 @@ function App() {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex items-center gap-5"
+            className="flex items-center gap-6"
           >
-            <div className="p-4 bg-gradient-to-br from-epic-gray to-black rounded-2xl border border-white/10 shadow-2xl">
-              <Ship className="w-10 h-10 text-white" />
+            <div className="w-20 h-20 rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
+              <img 
+                src="/logo.png" 
+                alt="Epic Ship Logo" 
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              />
             </div>
             <div>
-              <h1 className="text-4xl md:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500">
+              <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
                 Epic Ship
               </h1>
-              <p className="text-gray-400 font-medium mt-1 text-lg">Marko Vaik</p>
+              <p className="text-gray-400 font-medium mt-2 text-xl tracking-wide">Marko Vaik</p>
             </div>
           </motion.div>
           
