@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Ship, Anchor, Lock, LockOpen, Code, Building, Users, Server, Activity, ShieldCheck, Database, Smartphone } from 'lucide-react';
+import { ArrowUpRight, Anchor, Lock, LockOpen, Code, Building, Users, Server, Activity, ShieldCheck, Database, Smartphone } from 'lucide-react';
 
 interface Project {
   title: string;
@@ -136,11 +136,11 @@ function App() {
             className="flex items-center gap-6"
           >
             <div className="w-20 h-20 rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
-              <img 
-                src="/logo.png" 
-                alt="Epic Ship Logo" 
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              />
+<img 
+                                src="/logo.svg" 
+                                alt="Epic Ship Logo" 
+                                className="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform duration-500"
+                              />
             </div>
             <div>
               <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">

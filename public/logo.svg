@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <defs>
+    <linearGradient id="main" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#4f46e5"/>
+    </linearGradient>
+    <linearGradient id="horn" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#fcd34d"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="400" rx="80" fill="#0a0a0a"/>
+  
+  <!-- Simple elegant rocket -->
+  <g transform="translate(200, 205)">
+    <!-- Main rocket body - smooth teardrop -->
+    <path d="
+      M 0 -130
+      C 55 -100, 65 -20, 55 50
+      L 35 85
+      L 0 70
+      L -35 85
+      L -55 50
+      C -65 -20, -55 -100, 0 -130
+    " fill="url(#main)"/>
+    
+    <!-- Golden unicorn horn -->
+    <path d="
+      M 0 -130
+      L -8 -180
+      L 0 -195
+      L 8 -180
+      Z
+    " fill="url(#horn)"/>
+    
+    <!-- Window -->
+    <circle cx="0" cy="-45" r="25" fill="#0a0a0a"/>
+    <circle cx="0" cy="-45" r="18" fill="#1a1a2e"/>
+    
+    <!-- Subtle exhaust -->
+    <path d="M -20 85 L 0 130 L 20 85" fill="#6366f1" opacity="0.5"/>
+    <path d="M -10 85 L 0 115 L 10 85" fill="#a5b4fc" opacity="0.6"/>
+  </g>
+  
+</svg>
