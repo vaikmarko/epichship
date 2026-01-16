@@ -1,253 +1,271 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Anchor, Lock, LockOpen, Code, Building, Users, Server, Activity, ShieldCheck, Database, Smartphone } from 'lucide-react';
+import { ArrowUpRight, ExternalLink } from 'lucide-react';
 
 interface Project {
   title: string;
   description: string;
   url?: string;
   status: 'active' | 'exited' | 'archived' | 'building';
-  tech?: string[];
-  icon: React.ReactNode;
-  note?: string;
   image?: string;
-  logo?: string;
+  note?: string;
 }
 
 const projects: Project[] = [
+  {
+    title: "The List",
+    description: "Digital community platform for Rotermann Quarter.",
+    status: "building",
+    image: "/projects/thelist/bg.jpg",
+  },
+  {
+    title: "Echo",
+    description: "Team wellbeing and burnout prevention tool.",
+    url: "https://findyourecho.app",
+    status: "building",
+  },
+  {
+    title: "Sovereign Systems",
+    description: "Offline-first personal AI for preparedness.",
+    url: "https://svgnsystems.com",
+    status: "active",
+  },
+  {
+    title: "Sukoda",
+    description: "Premium home care subscription service.",
+    url: "https://www.sukoda.ee",
+    status: "active",
+  },
   {
     title: "Sentimental App",
     description: "AI-powered sentiment analysis and journaling platform.",
     url: "https://www.sentimentalapp.com",
     status: "active",
-    icon: <Activity className="w-6 h-6" />,
-    logo: "/projects/sentimental/logo.png",
   },
   {
     title: "Päriselt",
-    description: "Psühholoogiline nõustamine Tallinnas ja veebis. (Mother's project)",
+    description: "Estonian psychological counseling platform.",
     url: "https://www.päriselt.ee",
     status: "active",
-    icon: <Users className="w-6 h-6" />,
-    image: "/projects/pariselt/bg.png",
   },
   {
     title: "Air Seal",
-    description: "Construction and insulation solutions. (Father's project)",
+    description: "Premium tire sealant for fleets.",
     url: "https://www.air-seal.eu",
     status: "active",
-    icon: <Building className="w-6 h-6" />,
-    logo: "/projects/airseal/logo.png",
-  },
-  {
-    title: "My Confessions",
-    description: "Experimental LLM integration project.",
-    url: "https://www.myconfessions.org",
-    status: "archived",
-    icon: <Code className="w-6 h-6" />,
-    image: "/projects/myconfessions/bg.png",
-  },
-  {
-    title: "Echo",
-    description: "Find Your Echo - Personal resonance platform.",
-    url: "https://findyourecho.app",
-    status: "building",
-    icon: <Server className="w-6 h-6" />,
-    image: "/projects/echo/screen.png",
-  },
-  {
-    title: "Sovereign Systems",
-    description: "Digital sovereignty and operating systems.",
-    url: "https://svgnsystems.com",
-    status: "active",
-    icon: <ShieldCheck className="w-6 h-6" />,
-    image: "/projects/sovereign/bg.png",
   },
   {
     title: "PEP Checker",
     description: "Politically Exposed Persons verification tool.",
     url: "https://www.pepchecker.com",
     status: "exited",
-    icon: <Database className="w-6 h-6" />,
+    image: "/projects/pepchecker/preview.png",
   },
   {
-    title: "Sukoda",
-    description: "Partner gift and loyalty platform.",
-    url: "https://www.sukoda.ee",
-    status: "active",
-    icon: <Anchor className="w-6 h-6" />,
-    image: "/projects/sukoda/bg.jpg",
-    logo: "/projects/sukoda/logo.svg",
-  },
-  {
-    title: "Serenity Platform",
-    description: "Mental health counseling platform. Grew to 100+ specialists.",
-    url: "https://www.serenityplatform.com",
-    status: "exited",
-    icon: <Activity className="w-6 h-6" />,
-  },
-  {
-    title: "DataMe",
-    description: "Estonia's first credit bureau. Innovative fintech attempt.",
-    status: "exited",
-    icon: <Lock className="w-6 h-6" />,
-  },
-  {
-    title: "The List",
-    description: "Digital community platform for Rotermann Quarter.",
-    status: "building",
-    icon: <Smartphone className="w-6 h-6" />,
-    image: "/projects/thelist/bg.jpg",
-  },
-  {
-    title: "Vabaks",
-    description: "A bold move to liberate pension funds ahead of time.",
-    note: "A story of regulatory rebellion. Detainment, silence, and no guilt admission. For those who understand.",
+    title: "My Confessions",
+    description: "AI-powered biblical guidance and prayer.",
+    url: "https://myconfessions.org",
     status: "archived",
-    icon: <LockOpen className="w-6 h-6" />,
-  }
+  },
 ];
 
-const StatusBadge = ({ status }: { status: Project['status'] }) => {
-  const colors = {
-    active: "bg-green-500/20 text-green-400 border-green-500/30",
-    exited: "bg-blue-500/20 text-blue-400 border-blue-500/30",
-    archived: "bg-gray-500/20 text-gray-400 border-gray-500/30",
-    building: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
-  };
+const otherProjects: Project[] = [
+  { title: "Serenity Platform", description: "Estonia's largest mental health counseling platform. Grew to 100+ specialists.", status: "exited" },
+  { title: "DataMe", description: "Estonia's first credit bureau. Innovative fintech attempt.", status: "exited" },
+  { 
+    title: "Vabaks", 
+    description: "A bold move to liberate pension funds ahead of time.",
+    note: "A story of regulatory rebellion. Detainment, silence, and no guilt admission. For those who understand.",
+    status: "archived" 
+  },
+];
+
+const statusColors = {
+  active: "text-emerald-400",
+  exited: "text-sky-400", 
+  archived: "text-neutral-500",
+  building: "text-amber-400",
+};
+
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  // Use image if provided (for sites that block iframes), otherwise use iframe
+  const useStaticImage = !!project.image;
+  
+  const cardContent = (
+    <>
+      <div className="relative aspect-[16/10] overflow-hidden bg-neutral-900 border-b border-neutral-900">
+        {project.url && !useStaticImage ? (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <iframe 
+              src={project.url}
+              title={`${project.title} preview`}
+              className="w-[200%] h-[200%] origin-top-left scale-50 border-0"
+              loading="lazy"
+              sandbox="allow-scripts allow-same-origin"
+            />
+          </div>
+        ) : project.image ? (
+          <img 
+            src={project.image}
+            alt={`${project.title} preview`}
+            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+            loading="lazy"
+          />
+        ) : null}
+        <div className="absolute -inset-px bg-gradient-to-t from-neutral-900 via-black/20 to-transparent pointer-events-none" />
+        {project.url && (
+          <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity z-10">
+            <div className="bg-white text-black px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1">
+              Open <ExternalLink className="w-3.5 h-3.5" />
+            </div>
+          </div>
+        )}
+      </div>
+      <div className="flex items-start justify-between gap-4 px-6 py-5 bg-neutral-900 -mt-px">
+        <div>
+          <p className="text-lg font-semibold text-white">{project.title}</p>
+          <p className="mt-1 text-sm text-neutral-400">{project.description}</p>
+        </div>
+        <span className={`text-[11px] font-semibold uppercase tracking-[0.2em] shrink-0 ${statusColors[project.status]}`}>
+          {project.status}
+        </span>
+      </div>
+    </>
+  );
 
   return (
-    <span className={`px-2.5 py-1 text-xs font-bold rounded-full border backdrop-blur-md ${colors[status]}`}>
-      {status.charAt(0).toUpperCase() + status.slice(1)}
-    </span>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.05 }}
+      className="group flex flex-col rounded-3xl overflow-hidden border border-white/10 bg-neutral-900 hover:border-white/20 hover:shadow-xl hover:shadow-white/5 transition-all"
+    >
+      {project.url ? (
+        <a href={project.url} target="_blank" rel="noopener noreferrer" className="flex flex-col h-full">
+          {cardContent}
+        </a>
+      ) : (
+        cardContent
+      )}
+    </motion.div>
   );
-};
+}
 
 function App() {
   return (
-    <div className="min-h-screen bg-epic-black text-epic-white p-6 md:p-12 font-sans selection:bg-epic-accent selection:text-white overflow-x-hidden">
-      <div className="max-w-6xl mx-auto space-y-20">
+    <div className="min-h-screen bg-black text-white">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 py-16 sm:py-20">
         
         {/* Header */}
-        <header className="space-y-8 relative z-10 pt-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex items-center gap-6"
+        <header className="mb-16 sm:mb-20">
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-xs uppercase tracking-[0.4em] text-neutral-500"
           >
-            <div className="w-20 h-20 rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
-<img 
-                                src="/logo.svg" 
-                                alt="Epic Ship Logo" 
-                                className="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform duration-500"
-                              />
-            </div>
-            <div>
-              <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
-                Epic Ship
-              </h1>
-              <p className="text-gray-400 font-medium mt-2 text-xl tracking-wide">Marko Vaik</p>
-            </div>
-          </motion.div>
-          
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            Epic Ship
+          </motion.p>
+          <motion.h1 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="mt-4 text-4xl sm:text-6xl md:text-7xl font-semibold tracking-tight leading-[1.05]"
+          >
+            I build and ship digital products.
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ delay: 0.1 }}
-            className="max-w-2xl"
+            className="mt-6 max-w-2xl text-base sm:text-lg text-neutral-400 leading-relaxed"
           >
-            <p className="text-xl md:text-2xl text-gray-300 leading-relaxed font-light">
-              I build and ship digital products. <br />
-              <span className="text-gray-500">From fintech and mental health platforms to personal experiments and community apps.</span>
-            </p>
-          </motion.div>
-
+            From fintech and mental health platforms to community apps and experiments.
+          </motion.p>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
+            className="mt-8 flex flex-col gap-1 text-sm"
           >
-            <a href="mailto:ship@epicship.ee" className="inline-flex items-center gap-2 text-base font-medium text-white hover:text-epic-accent transition-colors border-b border-transparent hover:border-epic-accent pb-0.5">
+            <span className="text-neutral-300">Marko Vaik</span>
+            <a href="mailto:ship@epicship.ee" className="text-neutral-400 hover:text-white transition-colors flex items-center gap-1">
               ship@epicship.ee <ArrowUpRight className="w-4 h-4" />
             </a>
           </motion.div>
         </header>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 * index + 0.3 }}
-              className="group relative h-[400px] rounded-3xl overflow-hidden bg-epic-gray border border-white/5 hover:border-white/20 transition-all duration-500 hover:shadow-2xl hover:shadow-epic-accent/10 hover:-translate-y-2"
-            >
-              {/* Background Image */}
-              {project.image && (
-                <div className="absolute inset-0 z-0">
-                  <img 
-                    src={project.image} 
-                    alt="" 
-                    className="w-full h-full object-cover opacity-40 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700 ease-out grayscale group-hover:grayscale-0"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-500" />
-                </div>
-              )}
+        {/* Featured Projects Grid */}
+        <section className="mb-16 sm:mb-20">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-semibold text-white">Selected work</h2>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {projects.map((project, i) => (
+              <ProjectCard key={project.title} project={project} index={i} />
+            ))}
+          </div>
+        </section>
 
-              {/* Content Container */}
-              <div className="relative z-10 h-full flex flex-col p-8">
-                
-                {/* Top Row */}
-                <div className="flex justify-between items-start mb-auto">
-                   <div className="p-3 bg-black/40 backdrop-blur-md rounded-2xl border border-white/5 text-gray-300 group-hover:text-white group-hover:border-white/20 transition-all shadow-lg">
-                      {project.logo ? (
-                        <img src={project.logo} alt={`${project.title} logo`} className="w-8 h-8 object-contain" />
-                      ) : (
-                        project.icon
-                      )}
+        {/* Other Projects */}
+        <section className="border-t border-neutral-800 pt-12">
+          <div className="flex items-end justify-between gap-4 mb-8">
+            <h2 className="text-sm font-semibold text-neutral-500 uppercase tracking-[0.3em]">Other projects</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {otherProjects.map((project, i) => (
+              <motion.div
+                key={project.title}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 + i * 0.05 }}
+                className="group flex flex-col rounded-2xl border border-white/5 bg-neutral-900/40 px-5 py-4 hover:border-white/15 hover:bg-neutral-900/70 transition-all"
+              >
+                {project.url ? (
+                  <a href={project.url} target="_blank" rel="noopener noreferrer" className="flex flex-col h-full">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <span className="text-base font-semibold text-white group-hover:text-neutral-300 transition-colors">
+                          {project.title}
+                        </span>
+                        <span className={`text-xs font-medium uppercase tracking-wider ${statusColors[project.status]}`}>
+                          {project.status}
+                        </span>
+                      </div>
+                      <span className="text-neutral-500 group-hover:text-white transition-colors">
+                        <ExternalLink className="w-4 h-4" />
+                      </span>
                     </div>
-                  <StatusBadge status={project.status} />
-                </div>
-                
-                {/* Bottom Content */}
-                <div className="space-y-4">
-                  <h3 className="text-2xl font-bold text-white group-hover:text-epic-accent transition-colors flex items-center gap-2">
-                    {project.title}
-                    {project.url && <ArrowUpRight className="w-5 h-5 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />}
-                  </h3>
-                  
-                  <p className="text-gray-400 text-sm leading-relaxed line-clamp-3 group-hover:text-gray-300 transition-colors">
-                    {project.description}
-                  </p>
-
-                  {project.note && (
-                    <div className="pt-4 mt-2 border-t border-white/10">
-                      <p className="text-xs text-gray-500 italic leading-relaxed">
-                        "{project.note}"
-                      </p>
+                    <p className="mt-2 text-sm text-neutral-500">{project.description}</p>
+                    {project.note && (
+                      <p className="mt-3 pt-3 border-t border-white/5 text-xs text-neutral-600 italic">"{project.note}"</p>
+                    )}
+                  </a>
+                ) : (
+                  <>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <span className="text-base font-semibold text-white">
+                          {project.title}
+                        </span>
+                        <span className={`text-xs font-medium uppercase tracking-wider ${statusColors[project.status]}`}>
+                          {project.status}
+                        </span>
+                      </div>
                     </div>
-                  )}
-                </div>
-
-                {/* Clickable Link Overlay */}
-                {project.url && (
-                  <a 
-                    href={project.url} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="absolute inset-0 z-20 focus:outline-none focus:ring-2 focus:ring-epic-accent focus:ring-inset rounded-3xl"
-                    aria-label={`Visit ${project.title}`}
-                  />
+                    <p className="mt-2 text-sm text-neutral-500">{project.description}</p>
+                    {project.note && (
+                      <p className="mt-3 pt-3 border-t border-white/5 text-xs text-neutral-600 italic">"{project.note}"</p>
+                    )}
+                  </>
                 )}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
 
         {/* Footer */}
-        <footer className="pt-20 pb-12 border-t border-white/5 text-center">
-          <p className="text-gray-600 text-sm font-medium">&copy; {new Date().getFullYear()} Epic Ship / Marko Vaik. All rights reserved.</p>
+        <footer className="mt-20 text-neutral-600 text-sm">
+          © {new Date().getFullYear()} Epic Ship / Marko Vaik
         </footer>
 
       </div>
