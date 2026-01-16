@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowUpRight, ExternalLink } from 'lucide-react';
+import { ArrowUpRight, ExternalLink, Phone, Mail } from 'lucide-react';
 
 interface Project {
   title: string;
@@ -263,8 +263,42 @@ function App() {
           </div>
         </section>
 
+        {/* CTA Section */}
+        <section className="mt-20 border-t border-neutral-800 pt-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="max-w-2xl"
+          >
+            <h2 className="text-2xl sm:text-3xl font-semibold text-white">
+              Let's build something
+            </h2>
+            <p className="mt-4 text-neutral-400 leading-relaxed">
+              Interested in impactful projects that make money and make the world better. 
+              If you have an idea worth shipping, let's talk.
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row gap-4">
+              <a 
+                href="tel:+37256805509" 
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-semibold rounded-full hover:bg-neutral-200 transition-colors"
+              >
+                <Phone className="w-4 h-4" />
+                +372 5680 5509
+              </a>
+              <a 
+                href="mailto:ship@epicship.ee" 
+                className="inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-white font-semibold rounded-full hover:bg-white/10 transition-colors"
+              >
+                <Mail className="w-4 h-4" />
+                ship@epicship.ee
+              </a>
+            </div>
+          </motion.div>
+        </section>
+
         {/* Footer */}
-        <footer className="mt-20 text-neutral-600 text-sm">
+        <footer className="mt-16 text-neutral-600 text-sm">
           © {new Date().getFullYear()} Epic Ship / Marko Vaik
         </footer>
 
