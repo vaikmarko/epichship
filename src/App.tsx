@@ -25,11 +25,11 @@ const projects: Project[] = [
   },
   {
     title: "Päriselt",
-    description: "Meaningful connections and conversations. (Mother's project)",
+    description: "Psühholoogiline nõustamine Tallinnas ja veebis. (Mother's project)",
     url: "https://www.päriselt.ee",
     status: "active",
     icon: <Users className="w-6 h-6" />,
-    image: "/projects/pariselt/bg.jpg",
+    image: "/projects/pariselt/bg.png",
   },
   {
     title: "Air Seal",
