@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Space Grotesk', -apple-system, sans-serif;
+      background: #000;
+    }
+    .cover {
+      width: 1584px;
+      height: 396px;
+      background: linear-gradient(160deg, #1a1a1a 0%, #0d0d0d 50%, #000000 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      margin-left: 150px; /* Nihutatud paremale */
+    }
+    
+    .tagline {
+      font-size: 72px;
+      font-weight: 700; /* Bold */
+      color: #ffffff; /* Puhas valge */
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    
+    /* epicship.ee paremas alanurgas */
+    .url {
+      position: absolute;
+      bottom: 28px;
+      right: 48px;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      color: #4a4a4a;
+      z-index: 1;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="cover">
+    <div class="content">
+      <div class="tagline">No risk, no story.</div>
+    </div>
+    <div class="url">epicship.ee</div>
+  </div>
+</body>
+</html>
