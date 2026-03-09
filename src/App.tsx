@@ -40,6 +40,7 @@ const projects: Project[] = [
     description: "Premium home care subscription service.",
     url: "https://www.sukoda.ee",
     status: "active",
+    image: "/projects/sukoda/bg.jpg",
   },
   {
     title: "Sentimental App",
