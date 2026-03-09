@@ -12,6 +12,12 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: "Klaariks",
+    description: "Operating system for Estonian micro-entrepreneurs and freelancers. Automates tax declarations, annual reports and brings clarity to business finances.",
+    url: "https://www.klaariks.ee",
+    status: "building",
+  },
+  {
     title: "The List",
     description: "Digital community platform for Rotermann Quarter.",
     status: "building",
