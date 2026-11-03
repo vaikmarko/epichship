@@ -70,8 +70,8 @@ const projects: Project[] = [
   {
     title: "My Confessions",
     description: "AI-powered biblical guidance and prayer.",
-    url: "https://myconfessions.org",
     status: "archived",
+    image: "/projects/myconfessions/landing.png",
   },
 ];
 
