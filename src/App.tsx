@@ -51,16 +51,10 @@ const projects: Project[] = [
   },
   {
     title: "Sukoda",
-    description: "Home portal that keeps one household and its family on a shared calendar, with scheduled care visits.",
+    description: "A household and its family, on one calendar.",
     url: "https://www.sukoda.ee",
     status: "active",
     image: "/projects/sukoda/bg.jpg",
-  },
-  {
-    title: "Sentimental App",
-    description: "AI-powered sentiment analysis and journaling platform.",
-    url: "https://www.sentimentalapp.com",
-    status: "active",
   },
   {
     title: "Päriselt",
@@ -80,6 +74,12 @@ const projects: Project[] = [
     url: "https://www.pepchecker.com",
     status: "exited",
     image: "/projects/pepchecker/preview.png",
+  },
+  {
+    title: "Sentimental App",
+    description: "AI-powered sentiment analysis and journaling platform.",
+    url: "https://www.sentimentalapp.com",
+    status: "archived",
   },
 ];
 
