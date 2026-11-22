@@ -44,23 +44,11 @@ const projects: Project[] = [
     status: "building",
   },
   {
-    title: "Sovereign Systems",
-    description: "Offline-first personal AI for preparedness.",
-    url: "https://svgnsystems.com",
-    status: "active",
-  },
-  {
     title: "Sukoda",
-    description: "Premium home care subscription service.",
+    description: "A household and its family, on one calendar.",
     url: "https://www.sukoda.ee",
     status: "active",
     image: "/projects/sukoda/bg.jpg",
-  },
-  {
-    title: "Sentimental App",
-    description: "AI-powered sentiment analysis and journaling platform.",
-    url: "https://www.sentimentalapp.com",
-    status: "active",
   },
   {
     title: "Päriselt",
@@ -80,6 +68,18 @@ const projects: Project[] = [
     url: "https://www.pepchecker.com",
     status: "exited",
     image: "/projects/pepchecker/preview.png",
+  },
+  {
+    title: "Sovereign Systems",
+    description: "Offline-first personal AI for preparedness.",
+    url: "https://svgnsystems.com",
+    status: "active",
+  },
+  {
+    title: "Sentimental App",
+    description: "AI-powered sentiment analysis and journaling platform.",
+    url: "https://www.sentimentalapp.com",
+    status: "archived",
   },
 ];
 
