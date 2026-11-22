@@ -51,7 +51,7 @@ const projects: Project[] = [
   },
   {
     title: "Sukoda",
-    description: "Premium home care subscription service.",
+    description: "Home portal that keeps one household and its family on a shared calendar, with scheduled care visits.",
     url: "https://www.sukoda.ee",
     status: "active",
     image: "/projects/sukoda/bg.jpg",
