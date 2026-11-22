@@ -18,6 +18,20 @@ const projects: Project[] = [
     status: "building",
   },
   {
+    title: "Viisik",
+    description: "Lets parents invite trusted adults to stay beside a child, with voice notes and visits kept until the child turns 18.",
+    url: "https://viisik.com",
+    status: "active",
+    image: "/projects/viisik/landing.png",
+  },
+  {
+    title: "JoinSumin",
+    description: "Introduces people nearby for a 30-minute in-person meetup matched by a reason, not by photos.",
+    url: "https://joinsumin.com",
+    status: "building",
+    image: "/projects/joinsumin/landing.png",
+  },
+  {
     title: "The List",
     description: "Digital community platform for Rotermann Quarter.",
     status: "building",
@@ -66,12 +80,6 @@ const projects: Project[] = [
     url: "https://www.pepchecker.com",
     status: "exited",
     image: "/projects/pepchecker/preview.png",
-  },
-  {
-    title: "My Confessions",
-    description: "AI-powered biblical guidance and prayer.",
-    status: "archived",
-    image: "/projects/myconfessions/landing.png",
   },
 ];
 
