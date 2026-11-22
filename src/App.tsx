@@ -44,12 +44,6 @@ const projects: Project[] = [
     status: "building",
   },
   {
-    title: "Sovereign Systems",
-    description: "Offline-first personal AI for preparedness.",
-    url: "https://svgnsystems.com",
-    status: "active",
-  },
-  {
     title: "Sukoda",
     description: "A household and its family, on one calendar.",
     url: "https://www.sukoda.ee",
@@ -74,6 +68,12 @@ const projects: Project[] = [
     url: "https://www.pepchecker.com",
     status: "exited",
     image: "/projects/pepchecker/preview.png",
+  },
+  {
+    title: "Sovereign Systems",
+    description: "Offline-first personal AI for preparedness.",
+    url: "https://svgnsystems.com",
+    status: "active",
   },
   {
     title: "Sentimental App",
