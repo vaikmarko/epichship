@@ -25,7 +25,7 @@ const projects: Project[] = [
     image: "/projects/viisik/landing.png",
   },
   {
-    title: "JoinSumin",
+    title: "Sumin",
     description: "Introduces people nearby for a 30-minute in-person meetup matched by a reason, not by photos.",
     url: "https://joinsumin.com",
     status: "building",
