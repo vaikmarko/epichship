@@ -197,7 +197,7 @@ function App() {
         </main>
 
         <footer className="flex flex-col gap-1 py-10 text-sm text-[#55657A] sm:flex-row sm:justify-between">
-          <span>Epic Ship OÜ, registrikood 14713548</span>
+          <span>Epic Ship OÜ, registry code 14713548</span>
           <span>© {new Date().getFullYear()} Marko Vaik</span>
         </footer>
       </div>
