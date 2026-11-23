@@ -32,7 +32,22 @@ const lead: Project = {
   image: '/projects/klaariks/tile.jpg',
 };
 
-const featured: Project[] = [
+const theList: Project = {
+  title: 'The List',
+  description:
+    'Digital services for city quarters and residential developments, already in daily use in the Rotermann Quarter and Golden Gate in Tallinn.',
+  status: 'live',
+  image: '/projects/thelist/tile.jpg',
+};
+
+const theListServices = [
+  'Phone-based access to buildings and shared spaces',
+  'Digital keys for the sports club',
+  'The Rotermann app for people who live and work in the quarter',
+  'Next: Talsinki, including a lounge for residents',
+];
+
+const featuredTop: Project[] = [
   {
     title: 'Viisik',
     description:
@@ -49,18 +64,24 @@ const featured: Project[] = [
     status: 'building',
     image: '/projects/joinsumin/tile.jpg',
   },
+];
+
+const featuredBottom: Project[] = [
+  {
+    title: 'Staatus',
+    description:
+      'A club for the people of Rotermann, Artius and Talsinki. One card on the phone and 10% of every restaurant bill back. Entry is by invitation. Run by The List.',
+    url: 'https://minustaatus.ee',
+    status: 'building',
+    image: '/projects/staatus/tile.jpg',
+  },
   {
     title: 'Sukoda',
-    description: 'An app for home cleaners and their clients. Agree on a time, mark the job done and handle requests without calling.',
+    description:
+      'An app for home cleaners and their clients. Agree on a time, mark the job done and handle requests without calling.',
     url: 'https://www.sukoda.ee',
     status: 'live',
     image: '/projects/sukoda/tile.jpg',
-  },
-  {
-    title: 'The List',
-    description: 'Digital community platform for the Rotermann Quarter in Tallinn.',
-    status: 'building',
-    image: '/projects/thelist/tile.jpg',
   },
 ];
 
@@ -149,7 +170,37 @@ function App() {
             </Wrap>
 
             <div className="mt-14 grid gap-x-10 gap-y-14 sm:grid-cols-2">
-              {featured.map((p) => (
+              {featuredTop.map((p) => (
+                <Wrap key={p.title} project={p}>
+                  <Shot project={p} className="aspect-[16/10]" />
+                  <div className="mt-5 flex items-baseline justify-between gap-4">
+                    <h3 className="text-2xl font-semibold tracking-tight">{p.title}</h3>
+                    <StatusTag status={p.status} />
+                  </div>
+                  <p className="mt-2 max-w-md leading-relaxed text-[#55657A]">{p.description}</p>
+                </Wrap>
+              ))}
+            </div>
+
+            <div className="mt-14 grid items-center gap-8 rounded-2xl bg-[#F3F6F9] p-6 sm:p-10 lg:grid-cols-[7fr_5fr]">
+              <Shot project={theList} className="aspect-[16/10]" />
+              <div>
+                <StatusTag status={theList.status} />
+                <h3 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">{theList.title}</h3>
+                <p className="mt-4 max-w-md text-lg leading-relaxed text-[#3A4B60]">{theList.description}</p>
+                <ul className="mt-5 max-w-md space-y-2 text-[#3A4B60]">
+                  {theListServices.map((item) => (
+                    <li key={item} className="flex gap-3">
+                      <span className="mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-[#0B2239]" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div className="mt-14 grid gap-x-10 gap-y-14 sm:grid-cols-2">
+              {featuredBottom.map((p) => (
                 <Wrap key={p.title} project={p}>
                   <Shot project={p} className="aspect-[16/10]" />
                   <div className="mt-5 flex items-baseline justify-between gap-4">
