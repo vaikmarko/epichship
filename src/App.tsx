@@ -35,16 +35,16 @@ const lead: Project = {
 const theList: Project = {
   title: 'The List',
   description:
-    'Digital services for city quarters and residential developments, already in daily use in the Rotermann Quarter and Golden Gate in Tallinn.',
+    'Digital services for city quarters and residential developments, starting with the Rotermann Quarter in Tallinn.',
   status: 'live',
   image: '/projects/thelist/tile.jpg',
 };
 
 const theListServices = [
-  'Phone-based access to buildings and shared spaces',
-  'Digital keys for the sports club',
+  'Digital keys on the phone for offices and the sports club. In use at Golden Gate, soon across the whole quarter',
+  'Offices issue access to their own people',
   'The Rotermann app for people who live and work in the quarter',
-  'Next: Talsinki, including a lounge for residents',
+  'Next: Talsinki, with a lounge for residents',
 ];
 
 const featuredTop: Project[] = [
