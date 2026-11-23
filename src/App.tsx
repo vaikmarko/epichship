@@ -51,7 +51,7 @@ const featured: Project[] = [
   },
   {
     title: 'Sukoda',
-    description: 'A household and its family, on one calendar.',
+    description: 'An app for home cleaners and their clients. Agree on a time, mark the job done and handle requests without calling.',
     url: 'https://www.sukoda.ee',
     status: 'live',
     image: '/projects/sukoda/tile.jpg',
