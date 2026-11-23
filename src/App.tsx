@@ -35,7 +35,7 @@ const lead: Project = {
 const theList: Project = {
   title: 'The List',
   description:
-    'Digital keys, access and a community app for city quarters. In use at Golden Gate in the Rotermann Quarter in Tallinn, soon across the whole quarter, with Talsinki next.',
+    'Digital keys, access and a community app for the Rotermann Quarter in Tallinn.',
   status: 'live',
   image: '/projects/thelist/tile.jpg',
 };
