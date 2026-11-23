@@ -1,300 +1,205 @@
-import { motion } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
+type Status = 'building' | 'live' | 'exited' | 'archived';
 
 interface Project {
   title: string;
   description: string;
   url?: string;
-  status: 'active' | 'exited' | 'archived' | 'building';
+  status: Status;
   image?: string;
   note?: string;
 }
 
-const projects: Project[] = [
-  {
-    title: "Klaariks",
-    description: "Operating system for Estonian micro-entrepreneurs and freelancers. Automates tax declarations, annual reports and brings clarity to business finances.",
-    url: "https://www.klaariks.ee",
-    status: "building",
-  },
-  {
-    title: "Viisik",
-    description: "Lets parents invite trusted adults to stay beside a child, with voice notes and visits kept until the child turns 18.",
-    url: "https://viisik.com",
-    status: "active",
-    image: "/projects/viisik/landing.png",
-  },
-  {
-    title: "Sumin",
-    description: "Introduces people nearby for a 30-minute in-person meetup matched by a reason, not by photos.",
-    url: "https://joinsumin.com",
-    status: "building",
-    image: "/projects/joinsumin/landing.png",
-  },
-  {
-    title: "The List",
-    description: "Digital community platform for Rotermann Quarter.",
-    status: "building",
-    image: "/projects/thelist/bg.jpg",
-  },
-  {
-    title: "Echo",
-    description: "Team wellbeing and burnout prevention tool.",
-    url: "https://findyourecho.app",
-    status: "building",
-  },
-  {
-    title: "Sukoda",
-    description: "A household and its family, on one calendar.",
-    url: "https://www.sukoda.ee",
-    status: "active",
-    image: "/projects/sukoda/bg.jpg",
-  },
-  {
-    title: "Päriselt",
-    description: "Estonian psychological counseling platform.",
-    url: "https://www.päriselt.ee",
-    status: "active",
-  },
-  {
-    title: "Air Seal",
-    description: "Premium tire sealant for fleets.",
-    url: "https://www.air-seal.eu",
-    status: "active",
-  },
-  {
-    title: "PEP Checker",
-    description: "Politically Exposed Persons verification tool.",
-    url: "https://www.pepchecker.com",
-    status: "exited",
-    image: "/projects/pepchecker/preview.png",
-  },
-  {
-    title: "Sovereign Systems",
-    description: "Offline-first personal AI for preparedness.",
-    url: "https://svgnsystems.com",
-    status: "active",
-  },
-  {
-    title: "Sentimental App",
-    description: "AI-powered sentiment analysis and journaling platform.",
-    url: "https://www.sentimentalapp.com",
-    status: "archived",
-  },
-];
-
-const otherProjects: Project[] = [
-  { title: "Serenity Platform", description: "Estonia's largest mental health counseling platform. Grew to 100+ specialists.", status: "exited" },
-  { title: "DataMe", description: "Estonia's first credit bureau. Innovative fintech attempt.", status: "exited" },
-  { 
-    title: "Vabaks", 
-    description: "A bold move to liberate pension funds ahead of time.",
-    note: "A story of regulatory rebellion. Detainment, silence, and no guilt admission. For those who understand.",
-    status: "archived" 
-  },
-];
-
-const statusColors = {
-  active: "text-emerald-400",
-  exited: "text-sky-400", 
-  archived: "text-neutral-500",
-  building: "text-amber-400",
+const statusLabel: Record<Status, string> = {
+  building: 'In progress',
+  live: 'Live',
+  exited: 'Exited',
+  archived: 'Archived',
 };
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
-  // Use image if provided (for sites that block iframes), otherwise use iframe
-  const useStaticImage = !!project.image;
-  
-  const cardContent = (
-    <>
-      <div className="relative aspect-[16/10] overflow-hidden bg-neutral-900 border-b border-neutral-900">
-        {project.url && !useStaticImage ? (
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <iframe 
-              src={project.url}
-              title={`${project.title} preview`}
-              className="w-[200%] h-[200%] origin-top-left scale-50 border-0"
-              loading="lazy"
-              sandbox="allow-scripts allow-same-origin"
-            />
-          </div>
-        ) : project.image ? (
-          <img 
-            src={project.image}
-            alt={`${project.title} preview`}
-            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
-            loading="lazy"
-          />
-        ) : null}
-        <div className="absolute -inset-px bg-gradient-to-t from-neutral-900 via-black/20 to-transparent pointer-events-none" />
-        {project.url && (
-          <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity z-10">
-            <div className="bg-white text-black px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1">
-              Open <ExternalLink className="w-3.5 h-3.5" />
-            </div>
-          </div>
-        )}
-      </div>
-      <div className="flex items-start justify-between gap-4 px-6 py-5 bg-neutral-900 -mt-px">
-        <div>
-          <p className="text-lg font-semibold text-white">{project.title}</p>
-          <p className="mt-1 text-sm text-neutral-400">{project.description}</p>
-        </div>
-        <span className={`text-[11px] font-semibold uppercase tracking-[0.2em] shrink-0 ${statusColors[project.status]}`}>
-          {project.status}
-        </span>
-      </div>
-    </>
-  );
+const statusDot: Record<Status, string> = {
+  building: 'bg-[#E8A317]',
+  live: 'bg-[#1F9D6B]',
+  exited: 'bg-[#2F6FDE]',
+  archived: 'bg-[#A9B4C0]',
+};
 
+const lead: Project = {
+  title: 'Klaariks',
+  description:
+    'Accounting that runs itself for Estonian micro-businesses and freelancers. It files tax declarations, prepares annual reports and shows where the company stands.',
+  url: 'https://www.klaariks.ee',
+  status: 'building',
+  image: '/projects/klaariks/tile.jpg',
+};
+
+const featured: Project[] = [
+  {
+    title: 'Viisik',
+    description:
+      'Parents invite trusted adults to stay beside a child, with voice notes and visits kept until the child turns 18.',
+    url: 'https://viisik.com',
+    status: 'live',
+    image: '/projects/viisik/tile.jpg',
+  },
+  {
+    title: 'Sumin',
+    description:
+      'Introduces people nearby for a 30-minute meetup in person, matched by a reason and not by photos.',
+    url: 'https://joinsumin.com',
+    status: 'building',
+    image: '/projects/joinsumin/tile.jpg',
+  },
+  {
+    title: 'Sukoda',
+    description: 'A household and its family, on one calendar.',
+    url: 'https://www.sukoda.ee',
+    status: 'live',
+    image: '/projects/sukoda/tile.jpg',
+  },
+  {
+    title: 'The List',
+    description: 'Digital community platform for the Rotermann Quarter in Tallinn.',
+    status: 'building',
+    image: '/projects/thelist/tile.jpg',
+  },
+];
+
+const more: Project[] = [
+  { title: 'Echo', description: 'Team wellbeing and burnout prevention tool.', url: 'https://findyourecho.app', status: 'building' },
+  { title: 'Päriselt', description: 'Estonian psychological counseling platform.', url: 'https://www.päriselt.ee', status: 'live' },
+  { title: 'Air Seal', description: 'Premium tire sealant for fleets.', url: 'https://www.air-seal.eu', status: 'live' },
+  { title: 'Sovereign Systems', description: 'Offline-first personal AI for preparedness.', url: 'https://svgnsystems.com', status: 'live' },
+  { title: 'PEP Checker', description: 'Verification tool for politically exposed persons.', url: 'https://www.pepchecker.com', status: 'exited' },
+  { title: 'Serenity Platform', description: "Estonia's largest mental health counseling platform. Grew to 100+ specialists.", status: 'exited' },
+  { title: 'DataMe', description: "Estonia's first credit bureau.", status: 'exited' },
+  { title: 'Sentimental App', description: 'AI-powered sentiment analysis and journaling.', url: 'https://www.sentimentalapp.com', status: 'archived' },
+  {
+    title: 'Vabaks',
+    description: 'A bold move to liberate pension funds ahead of time.',
+    note: 'A story of regulatory rebellion. Detainment, silence, and no guilt admission. For those who understand.',
+    status: 'archived',
+  },
+];
+
+function StatusTag({ status }: { status: Status }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.05 }}
-      className="group flex flex-col rounded-3xl overflow-hidden border border-white/10 bg-neutral-900 hover:border-white/20 hover:shadow-xl hover:shadow-white/5 transition-all"
-    >
-      {project.url ? (
-        <a href={project.url} target="_blank" rel="noopener noreferrer" className="flex flex-col h-full">
-          {cardContent}
-        </a>
-      ) : (
-        cardContent
-      )}
-    </motion.div>
+    <span className="inline-flex items-center gap-2 text-sm text-[#55657A] whitespace-nowrap">
+      <span className={`h-2 w-2 rounded-full ${statusDot[status]}`} aria-hidden="true" />
+      {statusLabel[status]}
+    </span>
+  );
+}
+
+function Shot({ project, className = '' }: { project: Project; className?: string }) {
+  return (
+    <div className={`overflow-hidden rounded-xl bg-[#EEF2F6] ring-1 ring-[#0B2239]/10 ${className}`}>
+      <img
+        src={project.image}
+        alt={`${project.title} screenshot`}
+        loading="lazy"
+        className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.015] motion-reduce:transition-none"
+      />
+    </div>
+  );
+}
+
+function Wrap({ project, className, children }: { project: Project; className?: string; children: React.ReactNode }) {
+  return project.url ? (
+    <a href={project.url} target="_blank" rel="noopener noreferrer" className={`group block ${className ?? ''}`}>
+      {children}
+    </a>
+  ) : (
+    <div className={`group ${className ?? ''}`}>{children}</div>
   );
 }
 
 function App() {
   return (
-    <div className="min-h-screen bg-black text-white">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 py-16 sm:py-20">
-        
-        {/* Header */}
-        <header className="mb-16 sm:mb-20">
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-xs uppercase tracking-[0.4em] text-neutral-500"
-          >
-            Epic Ship
-          </motion.p>
-          <motion.h1 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="mt-4 text-4xl sm:text-6xl md:text-7xl font-semibold tracking-tight leading-[1.05]"
-          >
-            I build and ship digital products.
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.1 }}
-            className="mt-6 max-w-2xl text-base sm:text-lg text-neutral-400 leading-relaxed"
-          >
-            From fintech and mental health platforms to community apps and experiments.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="mt-8 flex flex-col gap-1 text-sm"
-          >
-            <span className="text-neutral-300">Marko Vaik</span>
-            <a href="mailto:ship@epicship.ee" className="text-neutral-400 hover:text-white transition-colors">
-              ship@epicship.ee
-            </a>
-            <a href="tel:+37256805509" className="text-neutral-400 hover:text-white transition-colors">
-              +372 5680 5509
-            </a>
-          </motion.div>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.25 }}
-            className="mt-6 text-sm text-neutral-500 max-w-md"
-          >
-            Open to impactful projects. If you're building something meaningful, let's talk.
-          </motion.p>
+    <div className="min-h-screen bg-white text-[#0B2239]">
+      <div className="mx-auto max-w-6xl px-6 sm:px-10">
+        <header className="flex items-center justify-between py-7">
+          <span className="text-lg font-semibold tracking-tight">Epic Ship</span>
+          <a href="mailto:ship@epicship.ee" className="link text-sm sm:text-base">
+            ship@epicship.ee
+          </a>
         </header>
 
-        {/* Featured Projects Grid */}
-        <section className="mb-16 sm:mb-20">
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
-            <div>
-              <h2 className="text-2xl sm:text-3xl font-semibold text-white">Selected work</h2>
+        <main>
+          <section className="pt-14 pb-20 sm:pt-24 sm:pb-28">
+            <h1 className="hero max-w-[12ch] font-semibold">I build and ship digital products.</h1>
+            <p className="mt-8 max-w-xl text-lg leading-relaxed text-[#55657A] sm:text-xl">
+              Marko Vaik, founder in Tallinn. For about a decade I have started companies in fintech,
+              mental health and community software. Today they live under Epic Ship OÜ.
+            </p>
+          </section>
+
+          <section aria-labelledby="work">
+            <h2 id="work" className="text-2xl font-semibold tracking-tight sm:text-3xl">
+              Selected work
+            </h2>
+
+            <Wrap project={lead} className="mt-8 grid items-center gap-8 rounded-2xl bg-[#F3F6F9] p-6 sm:p-10 lg:grid-cols-[5fr_7fr]">
+              <div>
+                <StatusTag status={lead.status} />
+                <h3 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">{lead.title}</h3>
+                <p className="mt-4 max-w-md text-lg leading-relaxed text-[#3A4B60]">{lead.description}</p>
+                <p className="link mt-6 inline-block text-base">klaariks.ee</p>
+              </div>
+              <Shot project={lead} className="aspect-[16/10] bg-white" />
+            </Wrap>
+
+            <div className="mt-14 grid gap-x-10 gap-y-14 sm:grid-cols-2">
+              {featured.map((p) => (
+                <Wrap key={p.title} project={p}>
+                  <Shot project={p} className="aspect-[16/10]" />
+                  <div className="mt-5 flex items-baseline justify-between gap-4">
+                    <h3 className="text-2xl font-semibold tracking-tight">{p.title}</h3>
+                    <StatusTag status={p.status} />
+                  </div>
+                  <p className="mt-2 max-w-md leading-relaxed text-[#55657A]">{p.description}</p>
+                </Wrap>
+              ))}
             </div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {projects.map((project, i) => (
-              <ProjectCard key={project.title} project={project} index={i} />
-            ))}
-          </div>
-        </section>
+          </section>
 
-        {/* Other Projects */}
-        <section className="border-t border-neutral-800 pt-12">
-          <div className="flex items-end justify-between gap-4 mb-8">
-            <h2 className="text-sm font-semibold text-neutral-500 uppercase tracking-[0.3em]">Other projects</h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {otherProjects.map((project, i) => (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 + i * 0.05 }}
-                className="group flex flex-col rounded-2xl border border-white/5 bg-neutral-900/40 px-5 py-4 hover:border-white/15 hover:bg-neutral-900/70 transition-all"
-              >
-                {project.url ? (
-                  <a href={project.url} target="_blank" rel="noopener noreferrer" className="flex flex-col h-full">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-4">
-                        <span className="text-base font-semibold text-white group-hover:text-neutral-300 transition-colors">
-                          {project.title}
-                        </span>
-                        <span className={`text-xs font-medium uppercase tracking-wider ${statusColors[project.status]}`}>
-                          {project.status}
-                        </span>
-                      </div>
-                      <span className="text-neutral-500 group-hover:text-white transition-colors">
-                        <ExternalLink className="w-4 h-4" />
-                      </span>
-                    </div>
-                    <p className="mt-2 text-sm text-neutral-500">{project.description}</p>
-                    {project.note && (
-                      <p className="mt-3 pt-3 border-t border-white/5 text-xs text-neutral-600 italic">"{project.note}"</p>
-                    )}
-                  </a>
-                ) : (
-                  <>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-4">
-                        <span className="text-base font-semibold text-white">
-                          {project.title}
-                        </span>
-                        <span className={`text-xs font-medium uppercase tracking-wider ${statusColors[project.status]}`}>
-                          {project.status}
-                        </span>
-                      </div>
-                    </div>
-                    <p className="mt-2 text-sm text-neutral-500">{project.description}</p>
-                    {project.note && (
-                      <p className="mt-3 pt-3 border-t border-white/5 text-xs text-neutral-600 italic">"{project.note}"</p>
-                    )}
-                  </>
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </section>
+          <section aria-labelledby="more" className="mt-24 sm:mt-32">
+            <h2 id="more" className="text-2xl font-semibold tracking-tight sm:text-3xl">
+              More products, past and present
+            </h2>
+            <ul className="mt-8 border-t border-[#0B2239]/15">
+              {more.map((p) => (
+                <li key={p.title} className="border-b border-[#0B2239]/15">
+                  <Wrap
+                    project={p}
+                    className="grid gap-x-8 gap-y-1 py-5 sm:grid-cols-[14rem_1fr_auto] sm:items-baseline"
+                  >
+                    <span className={`text-lg font-semibold tracking-tight ${p.url ? 'row-link' : ''}`}>{p.title}</span>
+                    <span className="text-[#55657A]">
+                      {p.description}
+                      {p.note && <span className="mt-1 block text-sm italic text-[#7C8A9A]">{p.note}</span>}
+                    </span>
+                    <StatusTag status={p.status} />
+                  </Wrap>
+                </li>
+              ))}
+            </ul>
+          </section>
 
-        {/* Footer */}
-        <footer className="mt-20 text-neutral-600 text-sm">
-          <div>© {new Date().getFullYear()} Epic Ship / Marko Vaik</div>
-          <div className="mt-1">Epic Ship OÜ · Registrikood 14713548</div>
+          <section aria-labelledby="contact" className="mt-24 rounded-2xl bg-[#0B2239] px-6 py-12 text-white sm:mt-32 sm:px-12 sm:py-16">
+            <h2 id="contact" className="max-w-[18ch] text-3xl font-semibold tracking-tight sm:text-5xl sm:leading-[1.05]">
+              Building something meaningful? Let's talk.
+            </h2>
+            <div className="mt-8 flex flex-col gap-3 text-lg sm:flex-row sm:gap-10">
+              <a href="mailto:ship@epicship.ee" className="link-light">ship@epicship.ee</a>
+              <a href="tel:+37256805509" className="link-light">+372 5680 5509</a>
+            </div>
+          </section>
+        </main>
+
+        <footer className="flex flex-col gap-1 py-10 text-sm text-[#55657A] sm:flex-row sm:justify-between">
+          <span>Epic Ship OÜ, registrikood 14713548</span>
+          <span>© {new Date().getFullYear()} Marko Vaik</span>
         </footer>
-
       </div>
     </div>
   );
