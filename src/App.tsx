@@ -38,7 +38,7 @@ const featured: Project[] = [
     description:
       'Parents invite trusted adults to stay beside a child, with voice notes and visits kept until the child turns 18.',
     url: 'https://viisik.com',
-    status: 'live',
+    status: 'building',
     image: '/projects/viisik/tile.jpg',
   },
   {
