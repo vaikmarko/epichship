@@ -291,7 +291,8 @@ function App() {
 
         {/* Footer */}
         <footer className="mt-20 text-neutral-600 text-sm">
-          © {new Date().getFullYear()} Epic Ship / Marko Vaik
+          <div>© {new Date().getFullYear()} Epic Ship / Marko Vaik</div>
+          <div className="mt-1">Epic Ship OÜ · Registrikood 14713548</div>
         </footer>
 
       </div>
