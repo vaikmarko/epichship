@@ -35,17 +35,10 @@ const lead: Project = {
 const theList: Project = {
   title: 'The List',
   description:
-    'Digital services for city quarters and residential developments, starting with the Rotermann Quarter in Tallinn.',
+    'Digital keys, access and a community app for city quarters. In use at Golden Gate in the Rotermann Quarter in Tallinn, soon across the whole quarter, with Talsinki next.',
   status: 'live',
   image: '/projects/thelist/tile.jpg',
 };
-
-const theListServices = [
-  'Digital keys on the phone for offices and the sports club. In use at Golden Gate, soon across the whole quarter',
-  'Offices issue access to their own people',
-  'The Rotermann app for people who live and work in the quarter',
-  'Next: Talsinki, with a lounge for residents',
-];
 
 const featuredTop: Project[] = [
   {
@@ -70,7 +63,7 @@ const featuredBottom: Project[] = [
   {
     title: 'Staatus',
     description:
-      'A club for the people of Rotermann, Artius and Talsinki. One card on the phone and 10% of every restaurant bill back. Entry is by invitation. Run by The List.',
+      'An invitation-only club for the people of Rotermann, Artius and Talsinki, with 10% of every restaurant bill back.',
     url: 'https://minustaatus.ee',
     status: 'building',
     image: '/projects/staatus/tile.jpg',
@@ -78,7 +71,7 @@ const featuredBottom: Project[] = [
   {
     title: 'Sukoda',
     description:
-      'An app for home cleaners and their clients. Agree on a time, mark the job done and handle requests without calling.',
+      'An app for housekeepers that takes care of times, reminders and the monthly summary.',
     url: 'https://www.sukoda.ee',
     status: 'live',
     image: '/projects/sukoda/tile.jpg',
@@ -188,14 +181,6 @@ function App() {
                 <StatusTag status={theList.status} />
                 <h3 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">{theList.title}</h3>
                 <p className="mt-4 max-w-md text-lg leading-relaxed text-[#3A4B60]">{theList.description}</p>
-                <ul className="mt-5 max-w-md space-y-2 text-[#3A4B60]">
-                  {theListServices.map((item) => (
-                    <li key={item} className="flex gap-3">
-                      <span className="mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-[#0B2239]" aria-hidden="true" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
               </div>
             </div>
 
